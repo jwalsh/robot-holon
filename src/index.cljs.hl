@@ -4,7 +4,35 @@
 
 (reload-all 1000)
 
+(defn special-list [& list]
+  (ul
+   (map li list)))
+
+(def c1 (cell 0))
+(def c2 (cell= (inc c1)))
+
+
 (html
-  (head)
-  (body
-    (h1 "Hello, World!")))
+ (head
+  (link :href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"       :rel="stylesheet")
+  (link :href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css" :rel="stylesheet")
+  (link :href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700"           :rel="stylesheet" :type="text/css"))
+ (body
+  (h1 "Boston Clojure: Hoplon")
+  (a :href "http://www.meetup.com/Boston-Clojure-Group/events/220178746/"
+     :text " Thursday, March 12, 2015")
+  (p "A review of Hoplon with Micha Niskin and Alan Dipert ")
+  (h1 "Notes")
+  (ul
+   (li "the app vs. document analogy if just going to a URL and pulling down a jar")
+   (li "HTML is the  programming language ")
+   (li "HTML is just an s-expression")
+   (li "function application is dom manipulation")
+   (li "no virtual DOM (through React) but manages state through Javelin and dirty checking ")
+   (li "structured way of applying evaluation semantics to lists "))
+  (h1 "Examples")
+  (h2 "Functions")
+  (special-list :attr "test" '( "one" "two" "three"))
+  (h2 "Javelin")
+  (ul
+   (li (cell= (str c2))))))
