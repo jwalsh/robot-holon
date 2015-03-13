@@ -4,8 +4,16 @@
 
 (reload-all 1000)
 
+
+;; (with-interval 1000
+;;   (.. js/window -location reload))
+
+(def op (cell conj))
+(def items (cell []))
+(def conj? (cell true))
+
 (defn special-list [& list]
-  (ul
+  (ul attr
    (map li list)))
 
 (def c1 (cell 0))
@@ -29,10 +37,12 @@
    (li "HTML is just an s-expression")
    (li "function application is dom manipulation")
    (li "no virtual DOM (through React) but manages state through Javelin and dirty checking ")
-   (li "structured way of applying evaluation semantics to lists "))
+   (li "structured way of applying evaluation semantics to lists ")
+   (li "create formula cells to update the DOM after an event is received"))
   (h1 "Examples")
   (h2 "Functions")
-  (special-list :attr "test" '( "one" "two" "three"))
+  (special-list "one" "two" "three")
   (h2 "Javelin")
-  (ul
-   (li (cell= (str c2))))))
+  (button :click #(swap! conj? not)
+          :text (if conj? "conj" "pop"))
+))
